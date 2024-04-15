@@ -1,0 +1,58 @@
+// ---- variables
+
+// colors
+$white: #ffffff;
+$black: #1e1e1e;
+$gray: #aaaaaa;
+$red: #da251e;
+
+// ----- fonts
+
+// imported fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wght@400;500;700&display=swap');
+
+// local fonts
+@import './fonts';
+
+// ----- base styles
+
+// base scss file
+@import './set';
+
+// html, body
+html.lock {
+    overflow: hidden;
+    touch-action: none;
+}
+html,
+body {
+    overflow-x: clip;
+}
+
+// main
+main {
+    position: relative;
+
+    flex: 1 1 auto;
+}
+
+// wrapper
+.wrapper {
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    max-width: 1920px;
+    height: 100%;
+}
+
+// ----- imports
+
+// header / footer
+@import './sections/header';
+@import './sections/footer';
+
+// ui
+@import '../ui/ui';
