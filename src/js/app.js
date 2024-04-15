@@ -7,6 +7,9 @@ import * as utils from './utils/utils.js';
 // hamburger menu
 utils.menuInit();
 
+// set current year
+utils.setCurrentYear();
+
 // ------------------------------- components -------------------------------
 
 // forms
@@ -23,6 +26,11 @@ import './utils/tabs.js';
 
 // modals
 import './utils/modals.js';
+
+// ---------------------------------- libs ----------------------------------
+
+// dynamic dom
+import './lib/dd';
 
 // --------------------------------------------------------------------------
 
