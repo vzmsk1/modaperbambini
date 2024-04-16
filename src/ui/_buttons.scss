@@ -97,28 +97,23 @@
             border-radius: 20rem;
 
             .btn__txt {
-                padding: 2.4rem 21rem 2.4rem 4rem;
+                padding: 2.4rem 4rem;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
 
                 font-size: 3.2rem;
                 line-height: 3.8rem;
 
                 &::after {
-                    top: 50%;
-                    left: auto;
-                    right: 0;
+                    position: static;
 
                     width: 6.4rem;
                     height: 2rem;
 
-                    transform: translate(-4rem, -50%);
-                }
-            }
-
-            @media (any-hover: hover) {
-                &:hover {
-                    .btn__txt::after {
-                        transform: translate(-14.6rem, -50%);
-                    }
+                    transform: none;
                 }
             }
         }
