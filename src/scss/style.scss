@@ -40,12 +40,29 @@ main {
 // wrapper
 .wrapper {
     margin: 0 auto;
+    padding-top: 12.1rem;
 
     display: flex;
     flex-direction: column;
 
     max-width: 1920px;
     height: 100%;
+
+    @media (max-width: 48em) {
+        padding-top: 15.2rem;
+    }
+}
+
+._desktop-only {
+    @media (max-width: 48em) {
+        display: none;
+    }
+}
+
+._mobile-only {
+    @media (min-width: 48em) {
+        display: none;
+    }
 }
 
 // ----- imports
@@ -56,3 +73,6 @@ main {
 
 // ui
 @import '../ui/ui';
+
+@import './dev/vzmsk1';
+@import './dev/markusDM';

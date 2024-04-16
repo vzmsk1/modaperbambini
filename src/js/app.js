@@ -32,6 +32,9 @@ import './utils/modals.js';
 // dynamic dom
 import './lib/dd';
 
+// swiper
+import './lib/swiper';
+
 // --------------------------------------------------------------------------
 
 import './dev/vzmsk1.js';
