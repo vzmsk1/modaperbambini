@@ -48,6 +48,8 @@ main {
     max-width: 1920px;
     height: 100%;
 
+    user-select: none;
+
     @media (max-width: 48em) {
         padding-top: 15.2rem;
     }
@@ -62,6 +64,21 @@ main {
 ._mobile-only {
     @media (min-width: 48em) {
         display: none;
+    }
+}
+
+// swiper fade fix
+.swiper-fade {
+    .swiper-slide {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition:
+            opacity 0.8s ease,
+            visibility 0.8s ease;
+        &.swiper-slide-active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
     }
 }
 
