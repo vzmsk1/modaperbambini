@@ -17,7 +17,7 @@ function setGsapDefaults() {
             return gsap.fromTo(
                 targets,
                 { opacity: 0, visibility: 'hidden' },
-                { opacity: 1, visibility: 'visible', config },
+                { opacity: 1, visibility: 'visible', ...config },
                 pst ? { position: pst } : null
             );
         },
@@ -30,6 +30,18 @@ function setGsapDefaults() {
                 targets,
                 { 'clip-path': 'polygon(0 0, 100% 0%, 100% 0, 0 0)' },
                 { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0 100%)', config },
+                pst ? { position: pst } : null
+            );
+        },
+        extendTimeline: true
+    });
+    gsap.registerEffect({
+        name: 'clipLTR',
+        effect: (targets, config, pst) => {
+            return gsap.fromTo(
+                targets,
+                { 'clip-path': 'polygon(0 0, 0 0, 0 100%, 0% 100%)' },
+                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', config },
                 pst ? { position: pst } : null
             );
         },
@@ -52,20 +64,9 @@ function initHeroAnimation() {
             },
             0.5
         );
-        tl.fromTo(
-            '.hero__head',
-            {
-                'clip-path': 'polygon(0 0, 0 0, 0 100%, 0% 100%)'
-            },
-            {
-                'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)'
-            },
-            0.7
-        );
+        tl.clipLTR('.hero__head', {}, 0.7);
         tl.fadeIn('.hero__body', {
-            onStart: () => {
-                initHeroSlider();
-            },
+            onStart: initHeroSlider,
             onComplete: () => {
                 tl.kill();
                 document.querySelector('.header').removeAttribute('style');
@@ -92,6 +93,104 @@ function initAboutScreenAnimation() {
             .fadeIn('.about__body', {}, 1)
             .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 1.2)
             .clipTTB('.numbers-about__item:not(:first-child)', { duration: 0.6, stagger: 0.6 }, 1.6);
+    }
+}
+
+function initActivitiesScreenAnimation() {
+    if (document.getElementById('animate-activities-screen')) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#animate-activities-screen',
+                start: 'top 40%',
+                end: '+=500',
+                once: true
+            }
+        })
+            .clipLTR('.activities__heading', {})
+            .fadeIn('.activities__body')
+            .fadeIn('.franchising-activities__image')
+            .fadeIn('.franchising-activities__content');
+    }
+}
+
+function setSaleImgWidth() {
+    const image = document.querySelector('.sale__image-wrap');
+
+    if (image) {
+        setTimeout(() => {
+            const GAP = 20;
+
+            const containerWidth = document.querySelector('.sale__head').getBoundingClientRect().width;
+            const fwWidth = document.querySelector('.sale__heading-txt_left').getBoundingClientRect().width;
+            const swWidth = document.querySelector('.sale__heading-txt_right').getBoundingClientRect().width;
+            const width = containerWidth - (fwWidth + swWidth);
+
+            image.style.width = width - GAP * 2 + 'px';
+            image.style.left = fwWidth + GAP + 'px';
+        }, 500);
+    }
+}
+
+function initSaleScreenAnimation() {
+    if (document.getElementById('animate-sale-screen')) {
+        const ROW_GAP = '4.5rem';
+        const IMAGE_WIDTH = '113.5rem';
+        const IMAGE_HEIGHT = '56rem';
+        const HEADING_SIZE = '4.8rem';
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#animate-sale-screen',
+                start: 'top 40%',
+                end: '+=500',
+                once: true
+            }
+        })
+            .to('.sale__head', { '--opacity': 1 }, 1)
+            .clipLTR('.sale ._cl', {}, 1)
+            .to(
+                '.sale__image-wrap',
+                {
+                    left: 0,
+                    top: '100%',
+                    width: IMAGE_WIDTH,
+                    height: IMAGE_HEIGHT,
+                    translateY: ROW_GAP,
+                    onStart: () => {
+                        gsap.to('.sale__head', { '--opacity': 0 });
+                    }
+                },
+                2.5
+            )
+            .to(
+                '.sale__heading',
+                {
+                    color: '#da251e',
+                    fontSize: HEADING_SIZE,
+                    width: 'auto'
+                },
+                2.5
+            )
+            .to(
+                '.sale__heading-txt_left',
+                {
+                    marginRight: '1rem',
+                    onComplete: () => {
+                        document.querySelector('.sale__badge').style.display = 'inline-flex';
+
+                        gsap.timeline().fadeIn('.sale__badge');
+                    }
+                },
+                2.5
+            )
+            .fadeIn('.sale__list-item', { duration: 0.6, stagger: 0.6 }, 2.5)
+            .fadeIn('.sale__btn', {
+                onStart: () => {
+                    gsap.to('.sale__content', {
+                        '--width': '100%'
+                    });
+                }
+            });
     }
 }
 
@@ -186,5 +285,8 @@ window.addEventListener('load', function () {
     mm.add('(min-width: 768px)', () => {
         initHeroAnimation();
         initAboutScreenAnimation();
+        initActivitiesScreenAnimation();
+        initSaleScreenAnimation();
+        setSaleImgWidth();
     });
 });

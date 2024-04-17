@@ -48,6 +48,8 @@ main {
     max-width: 1920px;
     height: 100%;
 
+    user-select: none;
+
     @media (max-width: 48em) {
         padding-top: 15.2rem;
     }
