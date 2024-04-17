@@ -1,0 +1,85 @@
+.franchising-hero {
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__head {
+        padding: 0.8rem 0;
+
+        @media (max-width: 48em) {
+            margin-bottom: 3.2rem;
+
+            padding: 3.2rem 0;
+
+            border-bottom: 1px solid $gray;
+        }
+    }
+
+    &__heading {
+        text-transform: uppercase;
+    }
+
+    &__body {
+        @media (min-width: 48em) {
+            border: 1px solid $gray;
+            border-left: none;
+            border-right: none;
+        }
+    }
+
+    &__swiper {
+        @media (max-width: 48em) {
+            margin-bottom: 8rem;
+        }
+    }
+
+    &__swiper-wrapper {
+        &.swiper-wrapper {
+            @media (min-width: 48em) {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+}
+
+.slide-franchising-hero {
+    @media (min-width: 48em) {
+        &:first-child {
+            .slide-franchising-hero__image-wrap {
+                padding-left: 0;
+            }
+        }
+        &:last-child {
+            .slide-franchising-hero__image-wrap {
+                padding-right: 0;
+            }
+        }
+        &:not(:last-child) {
+            border-right: 1px solid $gray;
+        }
+    }
+
+    &__image-wrap {
+        height: 67.8rem;
+
+        @media (min-width: 48em) {
+            padding: 3.2rem;
+
+            height: 53rem;
+        }
+    }
+
+    &__image {
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+    &__pagination {
+        @media (min-width: 48em) {
+            display: none;
+        }
+    }
+}
