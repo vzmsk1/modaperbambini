@@ -263,7 +263,7 @@
         height: 16.5rem;
 
         @media (max-width: 48em) {
-            flex: 0 0 50%;
+            flex: 1 1 auto;
 
             height: 30.8rem;
         }
@@ -391,10 +391,14 @@
         height: 16.5rem;
 
         @media (max-width: 48em) {
-            flex: 0 0 50%;
+            flex: 1 1 auto;
 
             width: auto;
             height: 30.8rem;
+
+            &._desktop-only {
+                display: none;
+            }
         }
     }
 

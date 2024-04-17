@@ -29,7 +29,7 @@ function setGsapDefaults() {
             return gsap.fromTo(
                 targets,
                 { 'clip-path': 'polygon(0 0, 100% 0%, 100% 0, 0 0)' },
-                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0 100%)', config },
+                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0 100%)', ...config },
                 pst ? { position: pst } : null
             );
         },
@@ -41,7 +41,7 @@ function setGsapDefaults() {
             return gsap.fromTo(
                 targets,
                 { 'clip-path': 'polygon(0 0, 0 0, 0 100%, 0% 100%)' },
-                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', config },
+                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', ...config },
                 pst ? { position: pst } : null
             );
         },
@@ -51,7 +51,7 @@ function setGsapDefaults() {
 setGsapDefaults();
 
 function initHeroAnimation() {
-    if (document.getElementById('animate-hero')) {
+    if (document.getElementById('hero-screen')) {
         const tl = gsap.timeline();
 
         tl.fromTo(
@@ -76,10 +76,10 @@ function initHeroAnimation() {
 }
 
 function initAboutScreenAnimation() {
-    if (document.getElementById('animate-about-screen')) {
+    if (document.getElementById('about-screen')) {
         gsap.timeline({
             scrollTrigger: {
-                trigger: '#animate-about-screen',
+                trigger: '#about-screen',
                 start: 'top 40%',
                 end: '+=500',
                 once: true
@@ -97,19 +97,19 @@ function initAboutScreenAnimation() {
 }
 
 function initActivitiesScreenAnimation() {
-    if (document.getElementById('animate-activities-screen')) {
+    if (document.getElementById('activities-screen')) {
         gsap.timeline({
             scrollTrigger: {
-                trigger: '#animate-activities-screen',
+                trigger: '#activities-screen',
                 start: 'top 40%',
                 end: '+=500',
                 once: true
             }
         })
             .clipLTR('.activities__heading', {})
-            .fadeIn('.activities__body')
-            .fadeIn('.franchising-activities__image')
-            .fadeIn('.franchising-activities__content');
+            .fadeIn('.activities__body', 1)
+            .fadeIn('.franchising-activities__image', 1.7)
+            .fadeIn('.franchising-activities__content', 2.5);
     }
 }
 
@@ -132,7 +132,7 @@ function setSaleImgWidth() {
 }
 
 function initSaleScreenAnimation() {
-    if (document.getElementById('animate-sale-screen')) {
+    if (document.getElementById('sale-screen')) {
         const ROW_GAP = '4.5rem';
         const IMAGE_WIDTH = '113.5rem';
         const IMAGE_HEIGHT = '56rem';
@@ -140,7 +140,7 @@ function initSaleScreenAnimation() {
 
         gsap.timeline({
             scrollTrigger: {
-                trigger: '#animate-sale-screen',
+                trigger: '#sale-screen',
                 start: 'top 40%',
                 end: '+=500',
                 once: true
@@ -157,7 +157,7 @@ function initSaleScreenAnimation() {
                     height: IMAGE_HEIGHT,
                     translateY: ROW_GAP,
                     onStart: () => {
-                        gsap.to('.sale__head', { '--opacity': 0 });
+                        gsap.to('.sale__head', { duration: 0.5, '--opacity': 0 });
                     }
                 },
                 2.5
@@ -191,6 +191,36 @@ function initSaleScreenAnimation() {
                     });
                 }
             });
+    }
+}
+
+function initCareerScreenAnimation() {
+    if (document.getElementById('career-screen')) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#career-screen',
+                start: 'top 40%',
+                end: '+=500',
+                once: true
+            }
+        })
+            .fadeIn('.career__container')
+            .clipLTR('.career__container', {}, 0);
+    }
+}
+
+function initContactsScreenAnimation() {
+    if (document.getElementById('contacts-screen')) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '#contacts-screen',
+                start: 'top 40%',
+                end: '+=500',
+                once: true
+            }
+        })
+            .fadeIn('.contacts-map__map')
+            .clipLTR('.contacts-map__content', {}, 0);
     }
 }
 
@@ -287,6 +317,9 @@ window.addEventListener('load', function () {
         initAboutScreenAnimation();
         initActivitiesScreenAnimation();
         initSaleScreenAnimation();
+        initCareerScreenAnimation();
+        initContactsScreenAnimation();
+
         setSaleImgWidth();
     });
 });

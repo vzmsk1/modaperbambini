@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://api-maps.yandex.ru/v3/?apikey=402f83d9-3e90-4726-b547-87890093893a&lang=ru_RU"></script>
         <title>Главная</title>
     <script defer src="main.js"></script></head>
     <body style="opacity: 0">
@@ -32,7 +33,7 @@
 </header>
 
             <main>
-                <section id="animate-hero" class="hero">
+                <section id="hero-screen" class="hero">
     <div class="hero__container container">
         <div class="hero__head">
             <span class="hero__heading h h_large">MODA PER BAMBINI</span>
@@ -106,7 +107,7 @@
     </div>
 </section>
 
-                <section id="animate-about-screen" class="about">
+                <section id="about-screen" class="about">
     <div class="about__container container">
         <div class="about__head">
             <span class="about__heading h h_h1 _desktop-only"><span data-text="Мы строим бизнес-сообщество, наполненное новыми">Мы строим бизнес-сообщество, наполненное новыми</span>
@@ -152,7 +153,7 @@
     </div>
 </section>
 
-                <section id="animate-activities-screen" class="activities">
+                <section id="activities-screen" class="activities">
     <div class="activities__container container">
         <div class="activities__head">
             <span class="activities__heading h h_h1">Наши направления</span>
@@ -293,7 +294,7 @@
                                     <li class="shop-activities__image-wrap">
                                         <img class="shop-activities__image" src="./assets/images/bg/frame_84.webp" alt="">
                                     </li>
-                                    <li class="shop-activities__image-wrap">
+                                    <li class="shop-activities__image-wrap _desktop-only">
                                         <img class="shop-activities__image" src="./assets/images/bg/Macro Desktop-BA.webp" alt="">
                                     </li>
                                 </ul>
@@ -316,7 +317,7 @@
     </div>
 </section>
 
-                <section id="animate-sale-screen" class="sale">
+                <section id="sale-screen" class="sale">
     <div class="sale__container container">
         <div class="sale__head">
             <div class="sale__heading h h_large">
@@ -340,6 +341,63 @@
                     <span class="btn__txt">Узнать больше</span>
                 </a>
             </div>
+        </div>
+    </div>
+</section>
+
+                <section id="career-screen" class="career">
+    <div class="career__container container">
+        <div class="career__bg">
+            <img class="career__bg-image" src="./assets/images/bg/4c7ec60c39c7f1299c816c4c29b730bf.webp" alt="">
+        </div>
+        <div class="career__content">
+            <div class="career__text">
+                <span class="career__heading h h_h1">Карьера</span>
+                <p class="career__description txt20">
+                    Мы приглашаем новых сотрудников присоединиться к нашей команде! Мы ищем талантливых и
+                    целеустремленных специалистов, готовых воплощать свои идеи в жизнь и развиваться  вместе с
+                    нами.
+                </p>
+                <a href="#" class="career__btn btn btn_primary">
+                    <span class="btn__txt">Узнать больше</span>
+                </a>
+            </div>
+            <div class="career__image-wrap">
+                <img src="./assets/images/bg/cf6b266587bb0fef1ed00da9be65cd7f.webp" alt="" class="career__image">
+            </div>
+        </div>
+    </div>
+</section>
+
+                <section id="contacts-screen" class="contacts-map">
+    <div class="contacts-map__container container">
+        <span class="contacts-map__heading h h_h1">Контакты</span>
+        <div class="contacts-map__body">
+            <div class="contacts-map__content">
+                <ul class="contacts-map__list">
+                    <li class="contacts-map__list-item">
+                        <span class="contacts-map__text">г. Москва, ул. Бауманская, д.11 строение 8</span>
+                        <span class="contacts-map__label txt20">Адрес</span>
+                    </li>
+                    <li class="contacts-map__list-item">
+                        <a href="tel:74997633551" class="contacts-map__text">+7(499) 763-35-51</a>
+                        <span class="contacts-map__label txt20">Телефон</span>
+                    </li>
+                    <li class="contacts-map__list-item">
+                        <a href="tel:79859900750" class="contacts-map__text">+7(985) 990-07-50</a>
+                        <span class="contacts-map__label txt20">Ведущий менеджер отдела франчайзинга</span>
+                    </li>
+                    <li class="contacts-map__list-item">
+                        <a href="tel:79160385455" class="contacts-map__text">+7(916) 038-54-55</a>
+                        <span class="contacts-map__label txt20">Руководитель отдела франчайзинга</span>
+                    </li>
+                    <li class="contacts-map__list-item">
+                        <a href="mailto:admin@modaperbambini.ru" class="contacts-map__text">admin@modaperbambini.ru</a>
+                        <span class="contacts-map__label txt20">Почта</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="contacts-map" class="contacts-map__map"></div>
         </div>
     </div>
 </section>

@@ -35,6 +35,9 @@ import './lib/dd';
 // swiper
 import './lib/swiper';
 
+// yandex map
+import './lib/map';
+
 // --------------------------------------------------------------------------
 
 import './dev/vzmsk1.js';
