@@ -9,34 +9,6 @@
     }
 
     &__heading {
-        display: flex;
-        flex-direction: column;
-
-        span {
-            --width: 0;
-
-            @media (min-width: 48em) {
-                position: relative;
-
-                &::before {
-                    content: attr(data-text);
-
-                    position: absolute;
-                    z-index: 1;
-
-                    width: var(--width);
-
-                    color: $black;
-                    white-space: nowrap;
-
-                    overflow: hidden;
-                }
-            }
-        }
-
-        @media (min-width: 48em) {
-            color: $gray;
-        }
     }
 
     &__body {
@@ -144,6 +116,37 @@
     }
 
     &__text {
+        color: $gray;
+    }
+}
+
+.tween-heading {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        --width: 0;
+
+        @media (min-width: 48em) {
+            position: relative;
+
+            &::before {
+                content: attr(data-text);
+
+                position: absolute;
+                z-index: 1;
+
+                width: var(--width);
+
+                color: $black;
+                white-space: nowrap;
+
+                overflow: hidden;
+            }
+        }
+    }
+
+    @media (min-width: 48em) {
         color: $gray;
     }
 }

@@ -18,6 +18,33 @@
 
     color: $gray;
 
+    &__icon {
+        display: inline-flex;
+
+        transition: transform 0.5s ease;
+
+        ._is-active & {
+            transform: rotate(-180deg);
+
+            svg {
+                fill: $red;
+            }
+        }
+
+        svg {
+            width: 4.6rem;
+            height: 3.2rem;
+
+            fill: $gray;
+
+            transition: fill 0.5s ease;
+        }
+
+        @media (min-width: 48em) {
+            display: none;
+        }
+    }
+
     &:not(&_static) {
         transition:
             color 0.5s ease,

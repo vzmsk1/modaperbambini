@@ -6,320 +6,428 @@ import { _slideDown, _slideToggle, _slideUp, removeClasses } from '../utils/util
 const mm = gsap.matchMedia();
 const mq = window.matchMedia('(max-width: 768px)');
 
-function setGsapDefaults() {
-    gsap.defaults({
-        duration: 1
-    });
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.registerEffect({
-        name: 'fadeIn',
-        effect: (targets, config, pst) => {
-            return gsap.fromTo(
-                targets,
-                { opacity: 0, visibility: 'hidden' },
-                { opacity: 1, visibility: 'visible', ...config },
-                pst ? { position: pst } : null
-            );
-        },
-        extendTimeline: true
-    });
-    gsap.registerEffect({
-        name: 'clipTTB',
-        effect: (targets, config, pst) => {
-            return gsap.fromTo(
-                targets,
-                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 0, 0 0)' },
-                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0 100%)', ...config },
-                pst ? { position: pst } : null
-            );
-        },
-        extendTimeline: true
-    });
-    gsap.registerEffect({
-        name: 'clipLTR',
-        effect: (targets, config, pst) => {
-            return gsap.fromTo(
-                targets,
-                { 'clip-path': 'polygon(0 0, 0 0, 0 100%, 0% 100%)' },
-                { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', ...config },
-                pst ? { position: pst } : null
-            );
-        },
-        extendTimeline: true
-    });
-}
-setGsapDefaults();
+const animations = {
+    initHeroAnimation() {
+        if (document.getElementById('hero-screen')) {
+            const tl = gsap.timeline();
 
-function initHeroAnimation() {
-    if (document.getElementById('hero-screen')) {
-        const tl = gsap.timeline();
-
-        tl.fromTo(
-            '.header',
-            {
-                translateY: '-110%'
-            },
-            {
-                translateY: 0
-            },
-            0.5
-        );
-        tl.clipLTR('.hero__head', {}, 0.7);
-        tl.fadeIn('.hero__body', {
-            onStart: initHeroSlider,
-            onComplete: () => {
-                tl.kill();
-                document.querySelector('.header').removeAttribute('style');
-            }
-        });
-    }
-}
-
-function initAboutScreenAnimation() {
-    if (document.getElementById('about-screen')) {
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#about-screen',
-                start: 'top 40%',
-                end: '+=500',
-                once: true
-            }
-        })
-            .to('.about__heading span', {
-                '--width': '100%',
-                duration: 0.6,
-                stagger: 0.6
-            })
-            .fadeIn('.about__body', {}, 1)
-            .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 1.2)
-            .clipTTB('.numbers-about__item:not(:first-child)', { duration: 0.6, stagger: 0.6 }, 1.6);
-    }
-}
-
-function initActivitiesScreenAnimation() {
-    if (document.getElementById('activities-screen')) {
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#activities-screen',
-                start: 'top 40%',
-                end: '+=500',
-                once: true
-            }
-        })
-            .clipLTR('.activities__heading', {})
-            .fadeIn('.activities__body', 1)
-            .fadeIn('.franchising-activities__image', 1.7)
-            .fadeIn('.franchising-activities__content', 2.5);
-    }
-}
-
-function setSaleImgWidth() {
-    const image = document.querySelector('.sale__image-wrap');
-
-    if (image) {
-        setTimeout(() => {
-            const GAP = 20;
-
-            const containerWidth = document.querySelector('.sale__head').getBoundingClientRect().width;
-            const fwWidth = document.querySelector('.sale__heading-txt_left').getBoundingClientRect().width;
-            const swWidth = document.querySelector('.sale__heading-txt_right').getBoundingClientRect().width;
-            const width = containerWidth - (fwWidth + swWidth);
-
-            image.style.width = width - GAP * 2 + 'px';
-            image.style.left = fwWidth + GAP + 'px';
-        }, 500);
-    }
-}
-
-function initSaleScreenAnimation() {
-    if (document.getElementById('sale-screen')) {
-        const ROW_GAP = '4.5rem';
-        const IMAGE_WIDTH = '113.5rem';
-        const IMAGE_HEIGHT = '56rem';
-        const HEADING_SIZE = '4.8rem';
-
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#sale-screen',
-                start: 'top 40%',
-                end: '+=500',
-                once: true
-            }
-        })
-            .to('.sale__head', { '--opacity': 1 }, 1)
-            .clipLTR('.sale ._cl', {}, 1)
-            .to(
-                '.sale__image-wrap',
+            tl.fromTo(
+                '.header',
                 {
-                    left: 0,
-                    top: '100%',
-                    width: IMAGE_WIDTH,
-                    height: IMAGE_HEIGHT,
-                    translateY: ROW_GAP,
-                    onStart: () => {
-                        gsap.to('.sale__head', { duration: 0.5, '--opacity': 0 });
-                    }
+                    translateY: '-110%'
                 },
-                2.5
-            )
-            .to(
-                '.sale__heading',
                 {
-                    color: '#da251e',
-                    fontSize: HEADING_SIZE,
-                    width: 'auto'
+                    translateY: 0
                 },
-                2.5
-            )
-            .to(
-                '.sale__heading-txt_left',
-                {
-                    marginRight: '1rem',
-                    onComplete: () => {
-                        document.querySelector('.sale__badge').style.display = 'inline-flex';
-
-                        gsap.timeline().fadeIn('.sale__badge');
-                    }
-                },
-                2.5
-            )
-            .fadeIn('.sale__list-item', { duration: 0.6, stagger: 0.6 }, 2.5)
-            .fadeIn('.sale__btn', {
-                onStart: () => {
-                    gsap.to('.sale__content', {
-                        '--width': '100%'
-                    });
+                0.5
+            );
+            tl.clipLTR('.hero__head', {}, 0.7);
+            tl.fadeIn('.hero__body', {
+                onStart: initHeroSlider,
+                onComplete: () => {
+                    tl.kill();
+                    document.querySelector('.header').removeAttribute('style');
                 }
             });
-    }
-}
+        }
+    },
+    initAboutScreenAnimation() {
+        if (document.getElementById('about-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#about-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .to('#about-screen-heading span', {
+                    '--width': '100%',
+                    duration: 0.6,
+                    stagger: 0.6
+                })
+                .fadeIn('#about-screen-body', {}, 0.6)
+                .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 1.2)
+                .clipTTB('.numbers-about__item:not(:first-child)', { duration: 0.6, stagger: 0.6 }, 1.6);
+        }
+    },
+    initActivitiesScreenAnimation() {
+        if (document.getElementById('activities-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#activities-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .clipLTR('.activities__heading', {})
+                .fadeIn('.activities__body', 1)
+                .fadeIn('.franchising-activities__image', 1.7)
+                .fadeIn('.franchising-activities__content', 2.5);
+        }
+    },
+    initSaleScreenAnimation() {
+        if (document.getElementById('sale-screen')) {
+            const ROW_GAP = '4.5rem';
+            const IMAGE_WIDTH = '113.5rem';
+            const IMAGE_HEIGHT = '56rem';
+            const HEADING_SIZE = '4.8rem';
 
-function initCareerScreenAnimation() {
-    if (document.getElementById('career-screen')) {
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#career-screen',
-                start: 'top 40%',
-                end: '+=500',
-                once: true
-            }
-        })
-            .fadeIn('.career__container')
-            .clipLTR('.career__container', {}, 0);
-    }
-}
-
-function initContactsScreenAnimation() {
-    if (document.getElementById('contacts-screen')) {
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#contacts-screen',
-                start: 'top 40%',
-                end: '+=500',
-                once: true
-            }
-        })
-            .fadeIn('.contacts-map__map')
-            .clipLTR('.contacts-map__content', {}, 0);
-    }
-}
-
-function initAccordionTabs() {
-    const tabs = document.querySelectorAll('[data-accordion-tabs]');
-
-    if (tabs.length) {
-        tabs.forEach((block) => {
-            const titles = Array.from(block.querySelectorAll('[data-accordion-tabs-item]'));
-            const content = block.querySelectorAll('[data-accordion-tabs-content]');
-            const body = block.querySelector('[data-accordion-tabs-body]');
-
-            function removeActiveClasses() {
-                removeClasses(titles, '_is-active');
-                removeClasses(content, '_is-active');
-            }
-
-            function setActiveClasses(idx) {
-                if (content[idx]) {
-                    const isActive = titles[idx].classList.contains('_is-active');
-
-                    removeActiveClasses();
-
-                    if (mq.matches) {
-                        content.forEach((el, index) => {
-                            if (index !== idx) {
-                                _slideUp(el);
-                            }
-                        });
-
-                        if (!isActive) {
-                            titles[idx].classList.add('_is-active');
-                            _slideDown(content[idx]);
-                        } else {
-                            titles[idx].classList.remove('_is-active');
-                            _slideUp(content[idx]);
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#sale-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .to('.sale__head', { '--opacity': 1 }, 1)
+                .clipLTR('.sale ._cl', {}, 1)
+                .to(
+                    '.sale__image-wrap',
+                    {
+                        left: 0,
+                        top: '100%',
+                        width: IMAGE_WIDTH,
+                        height: IMAGE_HEIGHT,
+                        translateY: ROW_GAP,
+                        onStart: () => {
+                            gsap.to('.sale__head', { duration: 0.5, '--opacity': 0 });
                         }
-                    } else {
-                        content[idx].classList.add('_is-active');
-                        titles[idx].classList.add('_is-active');
+                    },
+                    2.5
+                )
+                .to(
+                    '.sale__heading',
+                    {
+                        color: '#da251e',
+                        fontSize: HEADING_SIZE,
+                        width: 'auto'
+                    },
+                    2.5
+                )
+                .to(
+                    '.sale__heading-txt_left',
+                    {
+                        marginRight: '1rem',
+                        onComplete: () => {
+                            document.querySelector('.sale__badge').style.display = 'inline-flex';
+
+                            gsap.timeline().fadeIn('.sale__badge');
+                        }
+                    },
+                    2.5
+                )
+                .fadeIn('.sale__list-item', { duration: 0.6, stagger: 0.6 }, 2.5)
+                .fadeIn('.sale__btn', {
+                    onStart: () => {
+                        gsap.to('.sale__content', {
+                            '--width': '100%'
+                        });
+                    }
+                });
+        }
+    },
+    initCareerScreenAnimation() {
+        if (document.getElementById('career-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#career-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.career__container')
+                .clipLTR('.career__container', {}, 0);
+        }
+    },
+    initContactsScreenAnimation() {
+        if (document.getElementById('contacts-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#contacts-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.contacts-map__map')
+                .clipLTR('.contacts-map__content', {}, 0);
+        }
+    },
+    initFactsScreenAnimation() {
+        if (document.getElementById('facts-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#facts-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .clipLTR('.facts__heading')
+                .fadeIn('.facts__grid', {}, 0)
+                .fadeIn('.facts__cell_has-link');
+        }
+    },
+    initEconomyScreenAnimation() {
+        if (document.getElementById('economy-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#economy-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.economy__image-wrap')
+                .clipLTR('.economy__heading', {}, 0)
+                .clipLTR('.economy__list');
+        }
+    },
+    initBrandsScreenAnimation() {
+        if (document.getElementById('brands-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#brands-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.brands__info')
+                .clipLTR('.brands__heading, .brands__text-wrap', {}, 0)
+                .fadeIn('.brands__images')
+                .fadeIn('.brands__swiper-navigation, .brands__swiper')
+                .fadeIn('.brands__btn');
+        }
+    },
+    initStoresScreenAnimation() {
+        if (document.getElementById('stores-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#stores-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.stores__body, .stores__images')
+                .fadeIn('.stores__swiper, .stores__controls')
+                .fadeIn('.stores__link');
+        }
+    },
+    initFAQScreenAnimation() {
+        if (document.getElementById('faq-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#faq-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .clipLTR('.faq__head')
+                .fadeIn('.faq__body', {}, 0)
+                .fadeIn('.faq__tab-container')
+                .fadeIn('.faq__image-wrap');
+        }
+    },
+
+    initHeadingBodyAnimation() {
+        if (document.querySelectorAll('[data-heading-body-st]').length) {
+            document.querySelectorAll('[data-heading-body-st]').forEach((section) => {
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 40%',
+                        end: '+=500',
+                        once: true
+                    }
+                })
+                    .clipLTR(section.querySelector('[data-heading-st]'))
+                    .fadeIn(section.querySelector('[data-body-st]'));
+            });
+        }
+    }
+};
+
+const utils = {
+    setGsapDefaults() {
+        gsap.defaults({
+            duration: 1
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerEffect({
+            name: 'fadeIn',
+            effect: (targets, config, pst) => {
+                return gsap.fromTo(
+                    targets,
+                    { opacity: 0, visibility: 'hidden' },
+                    { opacity: 1, visibility: 'visible', ...config },
+                    pst ? { position: pst } : null
+                );
+            },
+            extendTimeline: true
+        });
+        gsap.registerEffect({
+            name: 'clipTTB',
+            effect: (targets, config, pst) => {
+                return gsap.fromTo(
+                    targets,
+                    { 'clip-path': 'polygon(0 0, 100% 0%, 100% 0, 0 0)' },
+                    { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0 100%)', ...config },
+                    pst ? { position: pst } : null
+                );
+            },
+            extendTimeline: true
+        });
+        gsap.registerEffect({
+            name: 'clipLTR',
+            effect: (targets, config, pst) => {
+                return gsap.fromTo(
+                    targets,
+                    { 'clip-path': 'polygon(0 0, 0 0, 0 100%, 0% 100%)' },
+                    { 'clip-path': 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', ...config },
+                    pst ? { position: pst } : null
+                );
+            },
+            extendTimeline: true
+        });
+    },
+    setSaleImgWidth() {
+        const image = document.querySelector('.sale__image-wrap');
+
+        if (image) {
+            setTimeout(() => {
+                const GAP = 20;
+
+                const containerWidth = document.querySelector('.sale__head').getBoundingClientRect().width;
+                const fwWidth = document
+                    .querySelector('.sale__heading-txt_left')
+                    .getBoundingClientRect().width;
+                const swWidth = document
+                    .querySelector('.sale__heading-txt_right')
+                    .getBoundingClientRect().width;
+                const width = containerWidth - (fwWidth + swWidth);
+
+                image.style.width = width - GAP * 2 + 'px';
+                image.style.left = fwWidth + GAP + 'px';
+            }, 500);
+        }
+    },
+    initAccordionTabs() {
+        const tabs = document.querySelectorAll('[data-accordion-tabs]');
+
+        if (tabs.length) {
+            tabs.forEach((block) => {
+                const titles = Array.from(block.querySelectorAll('[data-accordion-tabs-item]'));
+                const content = block.querySelectorAll('[data-accordion-tabs-content]');
+                const body = block.querySelector('[data-accordion-tabs-body]');
+
+                function removeActiveClasses() {
+                    removeClasses(titles, '_is-active');
+                    removeClasses(content, '_is-active');
+                }
+
+                function setActiveClasses(idx) {
+                    if (content[idx]) {
+                        const isActive = titles[idx].classList.contains('_is-active');
+
+                        removeActiveClasses();
+
+                        if (mq.matches) {
+                            content.forEach((el, index) => {
+                                if (index !== idx) {
+                                    _slideUp(el);
+                                }
+                            });
+
+                            if (!isActive) {
+                                titles[idx].classList.add('_is-active');
+                                _slideDown(content[idx]);
+                            } else {
+                                titles[idx].classList.remove('_is-active');
+                                _slideUp(content[idx]);
+                            }
+                        } else {
+                            content[idx].classList.add('_is-active');
+                            titles[idx].classList.add('_is-active');
+                        }
                     }
                 }
-            }
 
-            function clickHandler(e) {
-                const target = e.target.closest('[data-accordion-tabs-item]');
+                function clickHandler(e) {
+                    const target = e.target.closest('[data-accordion-tabs-item]');
 
-                if (target) {
-                    setActiveClasses(titles.indexOf(target));
+                    if (target) {
+                        setActiveClasses(titles.indexOf(target));
+                    }
                 }
-            }
 
-            if (!mq.matches) {
-                content[0].classList.add('_is-active');
-            } else {
-                removeActiveClasses();
-            }
-
-            titles[0].classList.add('_is-active');
-
-            for (let i = 0; i < titles.length; i++) {
-                const title = titles[i];
-                const contentItem = content[i];
-                const parent = title.parentElement;
-
-                if (mq.matches) {
-                    parent.append(contentItem);
-                    if (i !== 0) _slideUp(contentItem);
-                } else if (body) {
-                    body.append(contentItem);
-                    contentItem.removeAttribute('hidden');
+                if (!mq.matches) {
+                    content[0].classList.add('_is-active');
+                } else {
+                    removeActiveClasses();
                 }
-            }
 
-            block.addEventListener('click', clickHandler);
-        });
+                titles[0].classList.add('_is-active');
+
+                for (let i = 0; i < titles.length; i++) {
+                    const title = titles[i];
+                    const contentItem = content[i];
+                    const parent = title.parentElement;
+
+                    if (mq.matches) {
+                        parent.append(contentItem);
+                        if (i !== 0) _slideUp(contentItem);
+                    } else if (body) {
+                        body.append(contentItem);
+                        contentItem.removeAttribute('hidden');
+                    }
+                }
+
+                block.addEventListener('click', clickHandler);
+            });
+        }
     }
-}
+};
+
+utils.setGsapDefaults();
 
 window.addEventListener('load', function () {
     document.body.style.opacity = 1;
 
-    initAccordionTabs();
+    utils.initAccordionTabs();
 
     setTimeout(() => {
         document.documentElement.classList.add('_page-loaded');
     }, 1000);
 
+    if (mq.matches) {
+        initHeroSlider();
+    }
+
     mq.addEventListener('change', function () {
-        initAccordionTabs();
+        utils.initAccordionTabs();
     });
     mm.add('(min-width: 768px)', () => {
-        initHeroAnimation();
-        initAboutScreenAnimation();
-        initActivitiesScreenAnimation();
-        initSaleScreenAnimation();
-        initCareerScreenAnimation();
-        initContactsScreenAnimation();
+        animations.initHeroAnimation();
+        animations.initAboutScreenAnimation();
+        animations.initActivitiesScreenAnimation();
+        animations.initSaleScreenAnimation();
+        animations.initCareerScreenAnimation();
+        animations.initContactsScreenAnimation();
+        animations.initFactsScreenAnimation();
+        animations.initEconomyScreenAnimation();
+        animations.initBrandsScreenAnimation();
+        animations.initStoresScreenAnimation();
+        animations.initFAQScreenAnimation();
 
-        setSaleImgWidth();
+        animations.initHeadingBodyAnimation();
+
+        utils.setSaleImgWidth();
     });
 });

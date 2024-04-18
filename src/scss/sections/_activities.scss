@@ -23,84 +23,6 @@
     }
 
     &__tabs {
-        display: flex;
-        flex-direction: column;
-        row-gap: 6.4rem;
-
-        @media (min-width: 48em) {
-            padding: 3.2rem;
-
-            row-gap: 3.2rem;
-            width: 46.2rem;
-            border-right: 1px solid $gray;
-        }
-    }
-
-    &__tab-content {
-        @media (min-width: 48em) {
-            &:not(&._is-active) {
-                display: none;
-            }
-        }
-    }
-
-    &__tab-container {
-        display: none;
-
-        @media (min-width: 48em) {
-            display: block;
-            flex: 1 1 auto;
-        }
-    }
-
-    &__inner {
-        @media (max-width: 48em) {
-            padding-top: 4rem;
-        }
-    }
-
-    &__tab-title {
-        @media (max-width: 48em) {
-            display: flex;
-            align-items: center;
-            width: 100%;
-
-            &::after {
-                content: '';
-            }
-
-            .tab__txt {
-                margin-right: auto;
-            }
-
-            &._is-active {
-                .activities__tab-icon {
-                    transform: rotate(-180deg);
-                    svg {
-                        fill: $red;
-                    }
-                }
-            }
-        }
-    }
-
-    &__tab-icon {
-        display: inline-flex;
-
-        transition: transform 0.5s ease;
-
-        svg {
-            width: 4.6rem;
-            height: 3.2rem;
-
-            fill: $gray;
-
-            transition: fill 0.5s ease;
-        }
-
-        @media (min-width: 48em) {
-            display: none;
-        }
     }
 }
 
@@ -418,5 +340,67 @@
         @media (min-width: 48em) {
             align-self: flex-end;
         }
+    }
+}
+
+.accordion-tabs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6.4rem;
+
+    @media (min-width: 48em) {
+        padding: 3.2rem;
+
+        row-gap: 3.2rem;
+        width: 46.2rem;
+        border-right: 1px solid $gray;
+    }
+
+    &__content {
+        @media (min-width: 48em) {
+            &:not(&._is-active) {
+                display: none;
+            }
+        }
+    }
+
+    &__inner {
+        @media (max-width: 48em) {
+            padding-top: 4rem;
+        }
+    }
+
+    &__title {
+        @media (max-width: 48em) {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            &::after {
+                content: '';
+            }
+
+            .tab__txt {
+                margin-right: auto;
+            }
+
+            &._is-active {
+                .activities__tab-icon {
+                    transform: rotate(-180deg);
+                    svg {
+                        fill: $red;
+                    }
+                }
+            }
+        }
+    }
+}
+
+[data-accordion-tabs-body] {
+    display: none;
+
+    @media (min-width: 48em) {
+        display: block;
+        flex: 1 1 auto;
     }
 }

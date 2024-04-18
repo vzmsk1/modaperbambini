@@ -1,4 +1,62 @@
 .hero {
+    &_franchising {
+        .hero {
+            &__swiper-wrapper {
+                &.swiper-wrapper {
+                    height: auto;
+
+                    @media (min-width: 48em) {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                }
+            }
+            &__head {
+                justify-content: flex-start;
+
+                @media (min-width: 48em) {
+                    margin-bottom: 0;
+                }
+            }
+            &__heading {
+                text-transform: uppercase;
+            }
+            &__carousel {
+                &::after {
+                    content: none;
+                }
+            }
+        }
+        .swiper-slide-hero {
+            &__image-wrap {
+                height: 67.8rem;
+
+                @media (min-width: 48em) {
+                    padding: 3.2rem;
+                    padding-bottom: 0;
+
+                    height: 53rem;
+                }
+            }
+
+            @media (min-width: 48em) {
+                &:first-child {
+                    .swiper-slide-hero__image-wrap {
+                        padding-left: 0;
+                    }
+                }
+                &:last-child {
+                    .swiper-slide-hero__image-wrap {
+                        padding-right: 0;
+                    }
+                }
+                &:not(:last-child) {
+                    border-right: 1px solid $gray;
+                }
+            }
+        }
+    }
+
     &__container {
         display: flex;
         flex-direction: column;
