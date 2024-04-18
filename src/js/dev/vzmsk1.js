@@ -235,6 +235,21 @@ const animations = {
                 .fadeIn('.faq__image-wrap');
         }
     },
+    initStoreHeroScreenAnimation() {
+        if (document.getElementById('store-hero-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#store-hero-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.store-hero__container')
+                .clipLTR('.store-hero__heading, .store-hero__text', {}, 0)
+                .fadeIn('.store-hero__bg-image');
+        }
+    },
 
     initHeadingBodyAnimation() {
         if (document.querySelectorAll('[data-heading-body-st]').length) {
@@ -249,6 +264,20 @@ const animations = {
                 })
                     .clipLTR(section.querySelector('[data-heading-st]'))
                     .fadeIn(section.querySelector('[data-body-st]'));
+            });
+        }
+    },
+    initBodyAnimation() {
+        if (document.querySelectorAll('[data-section-st]').length) {
+            document.querySelectorAll('[data-section-st]').forEach((section) => {
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 40%',
+                        end: '+=500',
+                        once: true
+                    }
+                }).fadeIn(section);
             });
         }
     }
@@ -425,8 +454,10 @@ window.addEventListener('load', function () {
         animations.initBrandsScreenAnimation();
         animations.initStoresScreenAnimation();
         animations.initFAQScreenAnimation();
+        animations.initStoreHeroScreenAnimation();
 
         animations.initHeadingBodyAnimation();
+        animations.initBodyAnimation();
 
         utils.setSaleImgWidth();
     });

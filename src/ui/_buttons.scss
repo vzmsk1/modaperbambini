@@ -98,6 +98,22 @@
             }
         }
 
+        &_red {
+            @media (min-width: 48em) {
+                border: none;
+
+                background-color: $red;
+
+                .btn__txt {
+                    color: $white;
+
+                    &::after {
+                        background: url('./assets/images/icons/arr-white.svg') center / contain no-repeat;
+                    }
+                }
+            }
+        }
+
         @media (any-hover: hover) and (min-width: 48em) {
             &:hover {
                 .btn__txt::after {
