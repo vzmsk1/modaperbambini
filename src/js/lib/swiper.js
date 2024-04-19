@@ -1,7 +1,15 @@
 import Swiper from 'swiper';
 import 'swiper/css';
 import { removeClasses, remToPx } from '../utils/utils';
-import { Navigation, Autoplay, Pagination, EffectFade, Thumbs, EffectCreative } from 'swiper/modules';
+import {
+    Navigation,
+    Autoplay,
+    Pagination,
+    EffectFade,
+    Thumbs,
+    EffectCreative,
+    Controller
+} from 'swiper/modules';
 
 const mm = window.matchMedia('(max-width: 768px)');
 
@@ -217,6 +225,59 @@ function initSlidersOnResize() {
             });
         }
     }
+    if (document.querySelector('.brands-carousel__swiper')) {
+        new Swiper('.brands-carousel__swiper', {
+            modules: [Autoplay],
+            slidesPerView: 'auto',
+            spaceBetween: remToPx(6),
+            speed: 3000,
+            allowTouchMove: false,
+            loop: true,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false
+            },
+            breakpoints: { 768: { enabled: false } },
+            on: {
+                resize: (swiper) => {
+                    removeWrapperStylingOnDesk(swiper);
+                }
+            }
+        });
+    }
+    if (document.querySelector('.shops-hero__swiper')) {
+        const thumbs = new Swiper('.shops-hero__thumbs-swiper', {
+            speed: 800,
+            loop: true,
+            slidesPerView: 2,
+            spaceBetween: remToPx(3.2)
+        });
+        new Swiper('.shops-hero__swiper', {
+            modules: [EffectFade, Navigation, Thumbs, Pagination],
+            speed: 800,
+            loop: true,
+            spaceBetween: remToPx(10),
+            navigation: {
+                prevEl: '.shops-hero__swiper-navigation .i-btn_arr-prev',
+                nextEl: '.shops-hero__swiper-navigation .i-btn_arr-next'
+            },
+            pagination: {
+                el: '.shops-hero__carousel-pagination',
+                type: 'bullets',
+                clickable: true
+            },
+            thumbs: {
+                swiper: thumbs
+            },
+            effect: mm.matches ? 'slide' : 'fade',
+            breakpoints: {
+                768: {
+                    spaceBetween: 0,
+                    allowTouchMove: false
+                }
+            }
+        });
+    }
 }
 
 function initSliders() {
@@ -248,7 +309,7 @@ function initSliders() {
     }
 }
 
-window.matchMedia('(max-width: 768px)').addEventListener('change', initSlidersOnResize);
+mm.addEventListener('change', initSlidersOnResize);
 
 window.addEventListener('load', function () {
     initSlidersOnResize();

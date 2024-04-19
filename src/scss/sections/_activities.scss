@@ -397,10 +397,16 @@
 }
 
 [data-accordion-tabs-body] {
-    display: none;
-
     @media (min-width: 48em) {
         display: block;
         flex: 1 1 auto;
+    }
+}
+
+[data-accordion-tabs='tabs'] [data-accordion-tabs-content] {
+    @media (max-width: 48em) {
+        &:not(&._is-active) {
+            display: none;
+        }
     }
 }

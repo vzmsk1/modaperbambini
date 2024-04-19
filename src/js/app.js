@@ -38,6 +38,9 @@ import './lib/swiper';
 // yandex map
 import './lib/map';
 
+// input mask
+import './lib/inputmask';
+
 // --------------------------------------------------------------------------
 
 import './dev/vzmsk1.js';

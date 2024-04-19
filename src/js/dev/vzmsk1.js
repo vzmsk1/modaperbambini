@@ -21,8 +21,8 @@ const animations = {
                 },
                 0.5
             );
-            tl.clipLTR('.hero__head', {}, 0.7);
-            tl.fadeIn('.hero__body', {
+            tl.clipLTR('#hero-head', {}, 0.7);
+            tl.fadeIn('#hero-body', {
                 onStart: initHeroSlider,
                 onComplete: () => {
                     tl.kill();
@@ -129,18 +129,18 @@ const animations = {
                 });
         }
     },
-    initCareerScreenAnimation() {
-        if (document.getElementById('career-screen')) {
+    initClipAnimation() {
+        if (document.querySelector('[data-clip-st]')) {
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: '#career-screen',
+                    trigger: '[data-clip-st]',
                     start: 'top 40%',
                     end: '+=500',
                     once: true
                 }
             })
-                .fadeIn('.career__container')
-                .clipLTR('.career__container', {}, 0);
+                .fadeIn('[data-clip-st]')
+                .clipLTR('[data-clip-st]', {}, 0);
         }
     },
     initContactsScreenAnimation() {
@@ -248,6 +248,61 @@ const animations = {
                 .fadeIn('.store-hero__container')
                 .clipLTR('.store-hero__heading, .store-hero__text', {}, 0)
                 .fadeIn('.store-hero__bg-image');
+        }
+    },
+    initWholesaleHeroAnimation() {
+        if (document.getElementById('wholesale-hero-screen')) {
+            const tl = gsap.timeline();
+
+            tl.fromTo(
+                '.header',
+                {
+                    translateY: '-110%'
+                },
+                {
+                    translateY: 0
+                },
+                0.5
+            );
+            tl.clipLTR('.wholesale-hero__head', {}, 0.7);
+            tl.fadeIn('.wholesale-hero__content', {}, 1);
+            tl.fadeIn('.wholesale-hero__btn, .wholesale-hero__image-wrap', {
+                onComplete: () => {
+                    tl.kill();
+                    document.querySelector('.header').removeAttribute('style');
+                }
+            });
+        }
+    },
+    initConditionsScreenAnimation() {
+        if (document.getElementById('conditions-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#conditions-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .clipLTR('.conditions__heading')
+                .fadeIn('.conditions__body', {}, 0.7)
+                .fadeIn('.conditions-accordion-tabs__body');
+        }
+    },
+    initAboutShopsScreenAnimation() {
+        if (document.getElementById('about-shops-screen')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#about-shops-screen',
+                    start: 'top 40%',
+                    end: '+=500',
+                    once: true
+                }
+            })
+                .fadeIn('.about-shops__container')
+                .fadeIn('.about-shops__image-wrap', {}, 0)
+                .fadeIn('.about-shops__text, .about-shops__btn', 1.2)
+                .clipTTB('.about-shops__list-item', { duration: 0.6, stagger: 0.6 }, 1.2);
         }
     },
 
@@ -367,7 +422,7 @@ const utils = {
 
                         removeActiveClasses();
 
-                        if (mq.matches) {
+                        if (mq.matches && block.dataset.accordionTabs !== 'tabs') {
                             content.forEach((el, index) => {
                                 if (index !== idx) {
                                     _slideUp(el);
@@ -396,7 +451,7 @@ const utils = {
                     }
                 }
 
-                if (!mq.matches) {
+                if (!mq.matches || block.dataset.accordionTabs === 'tabs') {
                     content[0].classList.add('_is-active');
                 } else {
                     removeActiveClasses();
@@ -409,7 +464,7 @@ const utils = {
                     const contentItem = content[i];
                     const parent = title.parentElement;
 
-                    if (mq.matches) {
+                    if (mq.matches && block.dataset.accordionTabs !== 'tabs') {
                         parent.append(contentItem);
                         if (i !== 0) _slideUp(contentItem);
                     } else if (body) {
@@ -447,7 +502,7 @@ window.addEventListener('load', function () {
         animations.initAboutScreenAnimation();
         animations.initActivitiesScreenAnimation();
         animations.initSaleScreenAnimation();
-        animations.initCareerScreenAnimation();
+        animations.initClipAnimation();
         animations.initContactsScreenAnimation();
         animations.initFactsScreenAnimation();
         animations.initEconomyScreenAnimation();
@@ -455,6 +510,9 @@ window.addEventListener('load', function () {
         animations.initStoresScreenAnimation();
         animations.initFAQScreenAnimation();
         animations.initStoreHeroScreenAnimation();
+        animations.initWholesaleHeroAnimation();
+        animations.initConditionsScreenAnimation();
+        animations.initAboutShopsScreenAnimation();
 
         animations.initHeadingBodyAnimation();
         animations.initBodyAnimation();
