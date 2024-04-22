@@ -204,19 +204,19 @@ const animations = {
                 .fadeIn('.brands__btn');
         }
     },
-    initStoresScreenAnimation() {
-        if (document.getElementById('stores-screen')) {
+    initShopsScreenAnimation() {
+        if (document.getElementById('shops-screen')) {
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: '#stores-screen',
+                    trigger: '#shops-screen',
                     start: 'top 40%',
                     end: '+=500',
                     once: true
                 }
             })
-                .fadeIn('.stores__body, .stores__images')
-                .fadeIn('.stores__swiper, .stores__controls')
-                .fadeIn('.stores__link');
+                .fadeIn('.shops__body, .shops__images')
+                .fadeIn('.shops__swiper, .shops__controls')
+                .fadeIn('.shops__link');
         }
     },
     initFAQScreenAnimation() {
@@ -235,19 +235,19 @@ const animations = {
                 .fadeIn('.faq__image-wrap');
         }
     },
-    initStoreHeroScreenAnimation() {
-        if (document.getElementById('store-hero-screen')) {
+    initShopHeroScreenAnimation() {
+        if (document.getElementById('shop-hero-screen')) {
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: '#store-hero-screen',
+                    trigger: '#shop-hero-screen',
                     start: 'top 40%',
                     end: '+=500',
                     once: true
                 }
             })
-                .fadeIn('.store-hero__container')
-                .clipLTR('.store-hero__heading, .store-hero__text', {}, 0)
-                .fadeIn('.store-hero__bg-image');
+                .fadeIn('.shop-hero__container')
+                .clipLTR('.shop-hero__heading, .shop-hero__text', {}, 0)
+                .fadeIn('.shop-hero__bg-image');
         }
     },
     initWholesaleHeroAnimation() {
@@ -507,9 +507,9 @@ window.addEventListener('load', function () {
         animations.initFactsScreenAnimation();
         animations.initEconomyScreenAnimation();
         animations.initBrandsScreenAnimation();
-        animations.initStoresScreenAnimation();
+        animations.initShopsScreenAnimation();
         animations.initFAQScreenAnimation();
-        animations.initStoreHeroScreenAnimation();
+        animations.initShopHeroScreenAnimation();
         animations.initWholesaleHeroAnimation();
         animations.initConditionsScreenAnimation();
         animations.initAboutShopsScreenAnimation();

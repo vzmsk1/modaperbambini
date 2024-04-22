@@ -281,28 +281,28 @@ function initSlidersOnResize() {
 }
 
 function initSliders() {
-    if (document.querySelector('.stores__swiper')) {
-        new Swiper('.stores__swiper', {
+    if (document.querySelector('.shops__swiper')) {
+        new Swiper('.shops__swiper', {
             modules: [EffectFade, Navigation, Pagination],
             speed: 800,
             loop: true,
             effect: 'fade',
             allowTouchMove: false,
             navigation: {
-                prevEl: '.stores__swiper-navigation .i-btn_arr-prev',
-                nextEl: '.stores__swiper-navigation .i-btn_arr-next'
+                prevEl: '.shops__swiper-navigation .i-btn_arr-prev',
+                nextEl: '.shops__swiper-navigation .i-btn_arr-next'
             },
             pagination: {
-                el: '.stores__carousel-pagination',
+                el: '.shops__carousel-pagination',
                 type: 'bullets',
                 clickable: true
             },
             on: {
                 init: (swiper) => {
-                    setActiveClasses(swiper.realIndex, document.querySelectorAll('.stores__image-wrap'));
+                    setActiveClasses(swiper.realIndex, document.querySelectorAll('.shops__image-wrap'));
                 },
                 realIndexChange: (swiper) => {
-                    setActiveClasses(swiper.realIndex, document.querySelectorAll('.stores__image-wrap'));
+                    setActiveClasses(swiper.realIndex, document.querySelectorAll('.shops__image-wrap'));
                 }
             }
         });
