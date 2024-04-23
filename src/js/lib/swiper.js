@@ -307,6 +307,24 @@ function initSliders() {
             }
         });
     }
+    if (document.querySelectorAll('.not-found__swiper').length) {
+        document.querySelectorAll('.not-found__swiper').forEach((slider) => {
+            new Swiper(slider, {
+                modules: [Autoplay],
+                slidesPerView: 'auto',
+                spaceBetween: mm.matches ? remToPx(1.6) : remToPx(3.2),
+                speed: 10000,
+                direction: 'vertical',
+                allowTouchMove: false,
+                loop: true,
+                autoplay: {
+                    delay: 0,
+                    disableOnInteraction: false,
+                    reverseDirection: slider.classList.contains('not-found__swiper_reversed') ? true : false
+                }
+            });
+        });
+    }
 }
 
 mm.addEventListener('change', initSlidersOnResize);
