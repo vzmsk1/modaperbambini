@@ -39,3 +39,5 @@ async function initMap() {
 if (document.getElementById('contacts-map')) {
     initMap();
 }
+
+

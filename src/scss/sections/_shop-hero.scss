@@ -62,4 +62,22 @@
             min-height: 50rem;
         }
     }
+
+    &__logos {
+       display: flex;
+       justify-content: space-between;
+       width: 160rem;
+       margin: 0 auto;
+    }
+
+    &__logo {
+        max-height: 38rem;
+        width: 100%;
+        img {
+            height: auto;
+            width: auto;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+    }
 }

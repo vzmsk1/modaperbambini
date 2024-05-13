@@ -62,9 +62,9 @@ const animations = {
                 }
             })
                 .clipLTR('.activities__heading', {})
-                .fadeIn('.activities__body', 1)
-                .fadeIn('.franchising-activities__image', 1.7)
-                .fadeIn('.franchising-activities__content', 2.5);
+                // .fadeIn('.activities__body', 1)
+                // .fadeIn('.franchising-activities__image', 1.7)
+                // .fadeIn('.franchising-activities__content', 2.5);
         }
     },
     initSaleScreenAnimation() {
@@ -215,8 +215,8 @@ const animations = {
                 }
             })
                 .fadeIn('.shops__body, .shops__images')
-                .fadeIn('.shops__swiper, .shops__controls')
-                .fadeIn('.shops__link');
+                // .fadeIn('.shops__swiper, .shops__controls')
+                // .fadeIn('.shops__link');
         }
     },
     initFAQScreenAnimation() {
@@ -231,8 +231,8 @@ const animations = {
             })
                 .clipLTR('.faq__head')
                 .fadeIn('.faq__body', {}, 0)
-                .fadeIn('.faq__tab-container')
-                .fadeIn('.faq__image-wrap');
+                // .fadeIn('.faq__tab-container')
+                // .fadeIn('.faq__image-wrap');
         }
     },
     initShopHeroScreenAnimation() {
@@ -285,8 +285,8 @@ const animations = {
                 }
             })
                 .clipLTR('.conditions__heading')
-                .fadeIn('.conditions__body', {}, 0.7)
-                .fadeIn('.conditions-accordion-tabs__body');
+                // .fadeIn('.conditions__body', {}, 0.7)
+                // .fadeIn('.conditions-accordion-tabs__body');
         }
     },
     initAboutShopsScreenAnimation() {
@@ -300,9 +300,9 @@ const animations = {
                 }
             })
                 .fadeIn('.about-shops__container')
-                .fadeIn('.about-shops__image-wrap', {}, 0)
-                .fadeIn('.about-shops__text, .about-shops__btn', 1.2)
-                .clipTTB('.about-shops__list-item', { duration: 0.6, stagger: 0.6 }, 1.2);
+                // .fadeIn('.about-shops__image-wrap', {}, 0)
+                // .fadeIn('.about-shops__text, .about-shops__btn', 1.2)
+                // .clipTTB('.about-shops__list-item', { duration: 0.6, stagger: 0.6 }, 1.2);
         }
     },
 
@@ -402,33 +402,111 @@ const utils = {
             }, 500);
         }
     },
+    // initAccordionTabs() {
+    //     const tabs = document.querySelectorAll('[data-accordion-tabs]');
+
+    //     if (tabs.length) {
+    //         tabs.forEach((block) => {
+    //             const titles = Array.from(block.querySelectorAll('[data-accordion-tabs-item]'));
+    //             const content = block.querySelectorAll('[data-accordion-tabs-content]');
+    //             const body = block.querySelector('[data-accordion-tabs-body]');
+
+    //             function removeActiveClasses() {
+    //                 removeClasses(titles, '_is-active');
+    //                 removeClasses(content, '_is-active');
+    //             }
+
+    //             function setActiveClasses(idx) {
+    //                 if (content[idx]) {
+    //                     const isActive = titles[idx].classList.contains('_is-active');
+
+    //                     removeActiveClasses();
+
+    //                     if (mq.matches && block.dataset.accordionTabs !== 'tabs') {
+    //                         content.forEach((el, index) => {
+    //                             if (index !== idx) {
+    //                                 _slideUp(el);
+    //                             }
+    //                         });
+
+    //                         if (!isActive) {
+    //                             titles[idx].classList.add('_is-active');
+    //                             _slideDown(content[idx]);
+    //                         } else {
+    //                             titles[idx].classList.remove('_is-active');
+    //                             _slideUp(content[idx]);
+    //                         }
+    //                     } else {
+    //                         content[idx].classList.add('_is-active');
+    //                         titles[idx].classList.add('_is-active');
+    //                     }
+    //                 }
+    //             }
+
+    //             function clickHandler(e) {
+    //                 const target = e.target.closest('[data-accordion-tabs-item]');
+
+    //                 if (target) {
+    //                     setActiveClasses(titles.indexOf(target));
+    //                 }
+    //             }
+
+    //             if (!mq.matches || block.dataset.accordionTabs === 'tabs') {
+    //                 content[0].classList.add('_is-active');
+    //             } else {
+    //                 removeActiveClasses();
+    //             }
+
+    //             titles[0].classList.add('_is-active');
+
+    //             for (let i = 0; i < titles.length; i++) {
+    //                 const title = titles[i];
+    //                 const contentItem = content[i];
+    //                 const parent = title.parentElement;
+
+    //                 if (mq.matches && block.dataset.accordionTabs !== 'tabs') {
+    //                     parent.append(contentItem);
+    //                     if (i !== 0) _slideUp(contentItem);
+    //                 } else if (body) {
+    //                     body.append(contentItem);
+    //                     contentItem.removeAttribute('hidden');
+    //                 }
+    //             }
+
+    //             block.addEventListener('click', clickHandler);
+    //         });
+    //     }
+    // }
     initAccordionTabs() {
         const tabs = document.querySelectorAll('[data-accordion-tabs]');
-
+    
         if (tabs.length) {
             tabs.forEach((block) => {
                 const titles = Array.from(block.querySelectorAll('[data-accordion-tabs-item]'));
                 const content = block.querySelectorAll('[data-accordion-tabs-content]');
                 const body = block.querySelector('[data-accordion-tabs-body]');
-
+    
+                let activeTabIndex = 0; // Индекс текущего активного таба
+                let autoChangeInterval; // Интервал автоматической смены табов
+    
                 function removeActiveClasses() {
                     removeClasses(titles, '_is-active');
                     removeClasses(content, '_is-active');
                 }
-
+    
                 function setActiveClasses(idx) {
                     if (content[idx]) {
                         const isActive = titles[idx].classList.contains('_is-active');
-
+    
                         removeActiveClasses();
-
+    
                         if (mq.matches && block.dataset.accordionTabs !== 'tabs') {
                             content.forEach((el, index) => {
                                 if (index !== idx) {
                                     _slideUp(el);
                                 }
                             });
-
+    
                             if (!isActive) {
                                 titles[idx].classList.add('_is-active');
                                 _slideDown(content[idx]);
@@ -440,30 +518,37 @@ const utils = {
                             content[idx].classList.add('_is-active');
                             titles[idx].classList.add('_is-active');
                         }
+    
+                        activeTabIndex = idx; // Обновляем индекс текущего активного таба
                     }
                 }
-
+    
                 function clickHandler(e) {
                     const target = e.target.closest('[data-accordion-tabs-item]');
-
+    
                     if (target) {
                         setActiveClasses(titles.indexOf(target));
                     }
                 }
-
+    
+                function autoChangeTab() {
+                    activeTabIndex = (activeTabIndex + 1) % titles.length; // Увеличиваем индекс активного таба на 1, обеспечивая циклическую смену
+                    setActiveClasses(activeTabIndex);
+                }
+    
                 if (!mq.matches || block.dataset.accordionTabs === 'tabs') {
                     content[0].classList.add('_is-active');
                 } else {
                     removeActiveClasses();
                 }
-
+    
                 titles[0].classList.add('_is-active');
-
+    
                 for (let i = 0; i < titles.length; i++) {
                     const title = titles[i];
                     const contentItem = content[i];
                     const parent = title.parentElement;
-
+    
                     if (mq.matches && block.dataset.accordionTabs !== 'tabs') {
                         parent.append(contentItem);
                         if (i !== 0) _slideUp(contentItem);
@@ -472,11 +557,28 @@ const utils = {
                         contentItem.removeAttribute('hidden');
                     }
                 }
-
+    
                 block.addEventListener('click', clickHandler);
+    
+                // Проверяем, является ли устройство десктопным, и если да, то запускаем автоматическую смену табов
+                if (!window.matchMedia("(max-width: 767px)").matches) {
+                    autoChangeInterval = setInterval(autoChangeTab, 10000);
+                }
+    
+                // Останавливаем автоматическую смену табов при изменении размера экрана
+                window.addEventListener('resize', () => {
+                    if (!window.matchMedia("(max-width: 767px)").matches) {
+                        autoChangeInterval = setInterval(autoChangeTab, 10000);
+                    } else {
+                        clearInterval(autoChangeInterval);
+                    }
+                });
             });
         }
     }
+    
+    
+    
 };
 
 utils.setGsapDefaults();

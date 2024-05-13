@@ -28,20 +28,23 @@ export function initHeroSlider() {
             modules: [Autoplay, EffectCreative, Pagination],
             speed: 800,
             loop: true,
+            direction: 'horizontal',
+           
             allowTouchMove: false,
             autoplay: {
                 delay: 3500,
-                disableOnInteraction: false
+                disableOnInteraction: false,
+                reverseDirection: true, 
             },
-            effect: 'creative',
-            creativeEffect: {
-                prev: {
-                    translate: [0, 0, 0]
-                },
-                next: {
-                    translate: [0, '-100%', 0]
-                }
-            },
+            // effect: 'creative',
+            // creativeEffect: {
+            //     prev: {
+            //         translate: [0, 0, 0]
+            //     },
+            //     next: {
+            //         translate: [0, '-100%', 0]
+            //     }
+            // },
             pagination: {
                 el: '.hero_mainpage .hero__carousel-pagination',
                 type: 'bullets',
