@@ -119,14 +119,14 @@ const animations = {
                     },
                     2.5
                 )
-                .fadeIn('.sale__list-item', { duration: 0.6, stagger: 0.6 }, 2.5)
-                .fadeIn('.sale__btn', {
+                .fadeIn('.sale__list-item', { duration: 0.6, }, 2.5)  //stagger: 0.6 
+                .fadeIn('.sale__btn', {duration: 0.6,
                     onStart: () => {
                         gsap.to('.sale__content', {
                             '--width': '100%'
                         });
                     }
-                });
+                }, 2.5);
         }
     },
     initClipAnimation() {
@@ -302,7 +302,7 @@ const animations = {
                 .fadeIn('.about-shops__container')
                 // .fadeIn('.about-shops__image-wrap', {}, 0)
                 // .fadeIn('.about-shops__text, .about-shops__btn', 1.2)
-                // .clipTTB('.about-shops__list-item', { duration: 0.6, stagger: 0.6 }, 1.2);
+                .clipTTB('.about-shops__list-item', { duration: 0.6, stagger: 0.6 }, 1.2);
         }
     },
 
