@@ -198,9 +198,9 @@ const animations = {
                 }
             })
         
-                .fadeIn('.brands__container')
-                // .fadeIn('.brands__info')
-                // .fadeIn('.brands__images')
+                
+                .fadeIn('.brands__info')
+                .fadeIn('.brands__group, .brands__carousel')
                 // .clipLTR('.brands__heading, .brands__text-wrap', {}, 0)
                 
                 // .fadeIn('.brands__swiper-navigation, .brands__swiper')
