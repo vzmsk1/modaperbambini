@@ -197,11 +197,14 @@ const animations = {
                     once: true
                 }
             })
-                .fadeIn('.brands__info')
-                .clipLTR('.brands__heading, .brands__text-wrap', {}, 0)
-                .fadeIn('.brands__images')
-                .fadeIn('.brands__swiper-navigation, .brands__swiper')
-                .fadeIn('.brands__btn');
+        
+                .fadeIn('.brands__container')
+                // .fadeIn('.brands__info')
+                // .fadeIn('.brands__images')
+                // .clipLTR('.brands__heading, .brands__text-wrap', {}, 0)
+                
+                // .fadeIn('.brands__swiper-navigation, .brands__swiper')
+                // .fadeIn('.brands__btn');
         }
     },
     initShopsScreenAnimation() {
