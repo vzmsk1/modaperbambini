@@ -77,13 +77,13 @@ const animations = {
             gsap.timeline({
                 scrollTrigger: {
                     trigger: '#sale-screen',
-                    start: 'top 40%',
+                    start: 'top 70%',
                     end: '+=500',
                     once: true
                 }
             })
-                .to('.sale__head', { '--opacity': 1 }, 1)
-                .clipLTR('.sale ._cl', {}, 1)
+                .to('.sale__head', { '--opacity': 1 }, 0.5)
+                .clipLTR('.sale ._cl', {}, 0.5)
                 .to(
                     '.sale__image-wrap',
                     {
@@ -96,7 +96,7 @@ const animations = {
                             gsap.to('.sale__head', { duration: 0.5, '--opacity': 0 });
                         }
                     },
-                    2.5
+                    1.5
                 )
                 .to(
                     '.sale__heading',
@@ -105,7 +105,7 @@ const animations = {
                         fontSize: HEADING_SIZE,
                         width: 'auto'
                     },
-                    2.5
+                    1.5
                 )
                 .to(
                     '.sale__heading-txt_left',
@@ -117,7 +117,7 @@ const animations = {
                             gsap.timeline().fadeIn('.sale__badge');
                         }
                     },
-                    2.5
+                    1.5
                 )
                 .fadeIn('.sale__list-item', { duration: 0.6, }, 2.5)  //stagger: 0.6 
                 .fadeIn('.sale__btn', {duration: 0.6,
@@ -126,7 +126,7 @@ const animations = {
                             '--width': '100%'
                         });
                     }
-                }, 2.5);
+                }, 1.5);
         }
     },
     initClipAnimation() {
@@ -317,7 +317,9 @@ const animations = {
                         trigger: section,
                         start: 'top 40%',
                         end: '+=500',
+                        markers: true,
                         once: true
+                        
                     }
                 })
                     .clipLTR(section.querySelector('[data-heading-st]'))
