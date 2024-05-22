@@ -317,7 +317,7 @@ const animations = {
                         trigger: section,
                         start: 'top 40%',
                         end: '+=500',
-                        markers: true,
+                       
                         once: true
                         
                     }
