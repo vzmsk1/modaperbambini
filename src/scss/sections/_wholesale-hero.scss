@@ -156,8 +156,14 @@
         svg {
             max-width: 26.8rem;
             height: 20rem;
-
             filter: grayscale(1);
+            cursor: pointer;
+            transition: filter 0.2s ease-in-out;
+            &:hover {
+                filter: grayscale(0);
+                
+                
+            }
 
             @media (max-width: 48em) {
                 max-width: none;
