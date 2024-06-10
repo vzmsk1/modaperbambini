@@ -1,6 +1,5 @@
 .hero {
     &_franchising {
-        
         .hero {
             &__swiper-wrapper {
                 &.swiper-wrapper {
@@ -26,7 +25,6 @@
                 }
             }
 
-            
             &__carousel {
                 &::after {
                     content: none;
@@ -85,7 +83,23 @@
         }
     }
 
-    
+    &__head-simple {
+        justify-content: space-between;
+        align-items: baseline;
+        @media (max-width: 48em) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__head-simple-btn {
+        top: -2rem;
+        @media (max-width: 48em) {
+            top: initial;
+            margin-top: 2rem;
+        }
+    }
 
     &__swiper-wrapper {
         &.swiper-wrapper {
@@ -101,7 +115,7 @@
         position: relative;
 
         &::after {
-            content: '';
+            content: "";
 
             position: absolute;
             z-index: 2;
