@@ -123,7 +123,7 @@ class FormSubmition extends Validation {
 
         // show modal, if popup module is connected
         setTimeout(() => {
-            if (modules.popup) {
+            if (modules.modal) {
                 const modal = form.dataset.modalMessage;
                 modal ? modules.modal.open(modal) : null;
             }
