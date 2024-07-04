@@ -66,6 +66,14 @@
         flex-direction: column;
     }
 
+    &__video {
+        height: 74.5rem;
+
+        @media (max-width: 48em) {
+            height: 94rem;
+        }
+    }
+
     &__head {
         padding: 0.8rem 0;
         margin-bottom: 4rem;
@@ -101,6 +109,20 @@
         }
     }
 
+    &__bg-wrap {
+        height: 74.5rem;
+
+        @media (max-width: 48em) {
+            height: 94rem;
+        }
+    }
+
+    &__bg {
+        height: 100%;
+
+        object-fit: cover;
+    }
+
     &__swiper-wrapper {
         &.swiper-wrapper {
             height: 74.5rem;
@@ -115,7 +137,7 @@
         position: relative;
 
         &::after {
-            content: "";
+            content: '';
 
             position: absolute;
             z-index: 2;

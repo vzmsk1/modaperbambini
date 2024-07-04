@@ -31,7 +31,10 @@ async function initMap() {
 										</svg>
                   `
         );
-        const marker = new YMapMarker({ coordinates: el.coordinate, draggable: false }, content);
+        const marker = new YMapMarker(
+            { coordinates: el.coordinate, draggable: false, offset: ['-50%', '-50%'] },
+            content
+        );
         map.addChild(marker);
     });
 }
@@ -39,5 +42,3 @@ async function initMap() {
 if (document.getElementById('contacts-map')) {
     initMap();
 }
-
-

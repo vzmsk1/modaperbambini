@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Главная</title>
+    <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Главная</title>
-<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
-
-<body style="opacity: 0">
-    <div class="wrapper">
-        <header class="header">
+    <body style="opacity: 0">
+        <div class="wrapper">
+            <header class="header">
     <div class="header__container container">
         <a href="/" class="header__logo"><img class="header__logo-img" src="./assets/images/logo.svg" alt=""></a>
         <nav data-da=".header-menu,768,last" class="header__nav">
@@ -33,122 +32,20 @@
     <div class="header-menu"></div>
 </header>
 
-        <main>
-            <section id="hero-screen" class="hero  hero_mainpage">
-                <div class="hero__container container">
-                    <div id="hero-head" class="hero__head">
-                        <span class="hero__heading h h_large">ORIGINAL MARINES</span>
-                    
-                    </div>
-                    <div id="hero-body" class="hero__body">
-                        <div class="hero__carousel">
-                            <div class="hero__swiper swiper">
-                                <ul class="hero__swiper-wrapper swiper-wrapper">
-                                    <li class="hero__swiper-slide swiper-slide-hero swiper-slide">
-                                        <div class="swiper-slide-hero__image-wrap">
-                                            <img
-                                                class="swiper-slide-hero__image _desktop-only"
-                                                src="./assets/images/brand-d/bg.webp"
-                                                alt=""
-                                            />
-                                            <img
-                                                class="swiper-slide-hero__image _mobile-only"
-                                                src="./assets/images/brand-d/bgm.webp"
-                                                alt=""
-                                            />
-                                        </div>
-                                    </li>
-                                    <li class="hero__swiper-slide swiper-slide-hero swiper-slide">
-                                        <div class="swiper-slide-hero__image-wrap">
-                                            <img
-                                                class="swiper-slide-hero__image _desktop-only"
-                                                src="./assets/images/bg/Snapinsta.app_404623556_996973668042658_1276920401583079869_n_1080.webp"
-                                                alt=""
-                                            />
-                                            <img
-                                                class="swiper-slide-hero__image _mobile-only"
-                                                src="./assets/images/bg/Snapinsta.app_404623556_996973668042658_1276920401583079869_n_1080-m.webp"
-                                                alt=""
-                                            />
-                                        </div>
-                                    </li>
-                                    <li class="hero__swiper-slide swiper-slide-hero swiper-slide">
-                                        <div class="swiper-slide-hero__image-wrap">
-                                            <img
-                                                class="swiper-slide-hero__image _desktop-only"
-                                                src="./assets/images/bg/DPAM_202305311_Diane Look 32430.webp"
-                                                alt=""
-                                            />
-                                            <img
-                                                class="swiper-slide-hero__image _mobile-only"
-                                                src="./assets/images/bg/DPAM_202305311_Diane Look 32430.webp"
-                                                alt=""
-                                            />
-                                        </div>
-                                    </li>
-                                    <li class="hero__swiper-slide swiper-slide-hero swiper-slide">
-                                        <div class="swiper-slide-hero__image-wrap">
-                                            <img
-                                                class="swiper-slide-hero__image _desktop-only"
-                                                src="./assets/images/bg/Boboli_Campaign_Natures_tempo_SS24_Low.webp"
-                                                alt=""
-                                            />
-                                            <img
-                                                class="swiper-slide-hero__image _mobile-only"
-                                                src="./assets/images/bg/Boboli_Campaign_Natures_tempo_SS24_Low-m.webp"
-                                                alt=""
-                                            />
-                                        </div>
-                                    </li>
-                                    <li class="hero__swiper-slide swiper-slide-hero swiper-slide">
-                                        <div class="swiper-slide-hero__image-wrap">
-                                            <img
-                                                class="swiper-slide-hero__image _desktop-only"
-                                                src="./assets/images/bg/16_New-active+different-combo-BA-BO-ADV_8216_RGB.webp"
-                                                alt=""
-                                            />
-                                            <img
-                                                class="swiper-slide-hero__image _mobile-only"
-                                                src="./assets/images/bg/16_New-active+different-combo-BA-BO-ADV_8216_RGB.webp"
-                                                alt=""
-                                            />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul class="hero__carousel-brands carousel-brands-hero">
-                                <li class="carousel-brands-hero__item _is-active">
-                                    <svg>
-                                        <use href="#sergent-major-logo"></use>
-                                    </svg>
-                                </li>
-                                <li class="carousel-brands-hero__item">
-                                    <svg>
-                                        <use href="#jacadi-logo"></use>
-                                    </svg>
-                                </li>
-                                <li class="carousel-brands-hero__item">
-                                    <svg>
-                                        <use href="#dpam-logo"></use>
-                                    </svg>
-                                </li>
-                                <li class="carousel-brands-hero__item">
-                                    <svg>
-                                        <use href="#boboli-logo"></use>
-                                    </svg>
-                                </li>
-                                <li class="carousel-brands-hero__item">
-                                    <svg>
-                                        <use href="#original-marines-logo"></use>
-                                    </svg>
-                                </li>
-                            </ul>
+            <main>
+                <section id="hero-screen" class="hero hero_mainpage">
+                    <div class="hero__container container">
+                        <div id="hero-head" class="hero__head">
+                            <span class="hero__heading h h_large">ORIGINAL MARINES</span>
                         </div>
-                        <div class="hero__carousel-pagination carousel-pagination"></div>
+                        <div id="hero-body" class="hero__body">
+                            <div class="hero__video">
+                                <video data-videojs src="./assets/video/video.mp4"></video>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <section class="brand-d">
+                </section>
+                <section class="brand-d">
     <div class="container">
         <div class="brand-d__content">
             <div class="brand-d__title h_h1">Original Marines – это всегда самые последние решения талантливых дизайнеров, в работе которых чувствуется итальянский характер, стиль и качество.</div>
@@ -202,9 +99,8 @@
         </div>
     </div>
 </section>
-            
-        </main>
-        <footer class="footer">
+            </main>
+            <footer class="footer">
     <div class="footer__container container">
         <div class="footer__main">
             <div class="footer__logo-wrap">
@@ -284,7 +180,7 @@
         
 </button>
 
-        <svg display="none">
+            <svg display="none">
     <symbol id="sergent-major-logo" viewBox="0 0 267 76">
         <g clip-path="url(#clip0_612_2829)">
             <path d="M1.22446 71.8508C0.480359 71.0116 -0.0471043 68.1865 -9.38401e-06 65.669C0.235465 65.268 0.93247 65.2214 1.25272 65.5198C1.99682 67.5897 4.2197 71.9347 8.2416 71.9347C11.3593 71.9347 13.1206 70.0606 13.1206 67.5897C13.1206 65.268 12.0186 63.3939 8.93861 61.6969L7.16784 60.7086C4.08783 59.0023 1.37516 56.5221 1.37516 52.8485C1.37516 48.8205 4.42691 45.4079 10.4174 45.4079C12.5367 45.4079 14.1096 45.8927 16.0405 46.2657C16.4926 47.1515 16.8977 49.8275 16.8977 51.7575C16.681 52.1119 15.9463 52.1585 15.5884 51.8788C14.9762 49.7436 13.5162 47.0303 10.0406 47.0303C6.76282 47.0303 5.40649 49.1561 5.40649 51.31C5.40649 53.007 6.59328 54.8345 9.31537 56.261L11.8491 57.5944C14.5241 58.9837 17.4722 61.5105 17.4722 65.6317C17.4722 70.2564 13.9213 73.5384 7.94961 73.5384C4.1726 73.5384 2.04391 72.317 1.22446 71.8321" fill="white"></path>
@@ -676,7 +572,6 @@
     </symbol>
 </svg>
 
-    </div>
-</body>
-
+        </div>
+    </body>
 </html>

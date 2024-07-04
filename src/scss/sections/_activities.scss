@@ -92,8 +92,10 @@
 }
 
 .wholesale-activities {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    @media (min-width: 48em) {
+        grid-template-columns: 1fr auto;
+    }
 
     @media (min-width: 48em) {
         padding: 3.2rem;
@@ -105,7 +107,6 @@
     &__content {
         display: flex;
         flex-direction: column;
-        row-gap: 12.5rem;
         flex: 1 1 auto;
         max-width: 70.5rem;
 
@@ -115,14 +116,22 @@
             flex: 0 0 auto;
             max-width: none;
         }
+
+        @media (min-width: 48em) {
+            grid-row: span 2;
+        }
     }
 
     &__head {
+        margin-bottom: 5rem;
+
         display: flex;
         flex-direction: column;
         row-gap: 4rem;
 
         @media (min-width: 48em) {
+            margin-bottom: 0;
+
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
@@ -136,7 +145,7 @@
 
         @media (min-width: 48em) {
             row-gap: 1.6rem;
-            max-width: 31.5rem;
+            max-width: 57.5rem;
         }
     }
 
@@ -159,6 +168,7 @@
     &__brand-wrap {
         display: inline-flex;
 
+        img,
         svg {
             max-width: 12.8rem;
             max-height: 6.9rem;
@@ -200,6 +210,8 @@
     &__btn {
         @media (min-width: 48em) {
             align-self: flex-end;
+            grid-column: 2 / 3;
+            justify-self: end;
         }
     }
 }
