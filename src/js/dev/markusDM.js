@@ -3,6 +3,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import { removeClasses, remToPx } from '../utils/utils';
 import { Navigation, Autoplay, Pagination, EffectFade, Thumbs, EffectCreative, Grid  } from 'swiper/modules';
+import $ from "jquery";
 
 if (document.querySelector('.show-d')) {
     const detailedGalleryThumbs = new Swiper('.show-d__right-swiper', {
@@ -87,5 +88,20 @@ new Swiper('.brand-d__swiper', {
             },
         }
     }
+});
+
+
+$(document).ready(function() {
+    $('.primary-scroll').on('click', function(event) {
+        event.preventDefault();
+        var target = $(this).data('target');
+        var $target = $(target);
+
+        if ($target.length) {
+            $('html, body').animate({
+                scrollTop: $target.offset().top
+            }, 1000);
+        }
+    });
 });
 
