@@ -28,12 +28,12 @@
     }
 
     &__image-wrap {
-        position: absolute;
-        top: 3.2rem;
+        padding-top: 3.2rem;
+        padding-bottom: 3.2rem;
         left: 3.2rem;
 
         width: 48.8rem;
-        height: 53.7rem;
+        height: 100%;
 
         transition:
             opacity 0.5s ease,

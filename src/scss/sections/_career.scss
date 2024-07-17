@@ -8,7 +8,7 @@
     }
 
     &__bg {
-        height: 48.2rem;
+        
 
         @media (min-width: 48em) {
             flex: 0 0 84.4rem;
@@ -64,9 +64,6 @@
 
     &__image-wrap {
         flex: 0 0 40.6rem;
-
-        height: 36.5rem;
-
         @media (max-width: 48em) {
             display: none;
         }
