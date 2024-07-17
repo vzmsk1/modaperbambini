@@ -11,7 +11,9 @@
 
     &__images {
         position: relative;
-
+        @media (max-width: 48em) {
+            height: 83rem;
+        }
      
 
         border-bottom: 1px solid $gray;
