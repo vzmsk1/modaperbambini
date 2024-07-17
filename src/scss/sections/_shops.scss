@@ -12,24 +12,23 @@
     &__images {
         position: relative;
 
-        height: 83.8rem;
+     
 
         border-bottom: 1px solid $gray;
 
         @media (min-width: 48em) {
             flex: 0 0 55.2rem;
             width: 55.2rem;
-            height: 100%;
             min-height: 60.1rem;
-
             border-right: 1px solid $gray;
             border-bottom: none;
         }
     }
 
     &__image-wrap {
-        padding-top: 3.2rem;
+        position: absolute;
         padding-bottom: 3.2rem;
+        padding-top: 3.2rem;
         left: 3.2rem;
 
         width: 48.8rem;
