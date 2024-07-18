@@ -46,9 +46,9 @@ const animations = {
                     duration: 0.6,
                     stagger: 0.6
                 })
-                .fadeIn('#about-screen-body', {}, 0.6)
-                .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 1.2)
-                .clipTTB('.numbers-about__item:not(:first-child)', { duration: 0.6, stagger: 0.6 }, 1.6);
+                .fadeIn('#about-screen-body', {}, 0.3)
+                .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 0.6)
+                .clipTTB('.numbers-about__item:not(:first-child)', { duration: 0.3, stagger: 0.3 }, 1.);
         }
     },
     initActivitiesScreenAnimation() {
@@ -119,8 +119,8 @@ const animations = {
                     },
                     1.5
                 )
-                .fadeIn('.sale__list-item', { duration: 0.6, }, 2.5)  //stagger: 0.6 
-                .fadeIn('.sale__btn', {duration: 0.6,
+                .fadeIn('.sale__list-item', { duration: 0.3, }, 1.5)  //stagger: 0.6 
+                .fadeIn('.sale__btn', {duration: 0.3,
                     onStart: () => {
                         gsap.to('.sale__content', {
                             '--width': '100%'
@@ -267,8 +267,8 @@ const animations = {
                 },
                 0.5
             );
-            tl.clipLTR('.wholesale-hero__head', {}, 0.7);
-            tl.fadeIn('.wholesale-hero__content', {}, 1);
+            tl.clipLTR('.wholesale-hero__head', {}, 0.3);
+            tl.fadeIn('.wholesale-hero__content', {}, 0.5);
             tl.fadeIn('.wholesale-hero__btn, .wholesale-hero__image-wrap', {
                 onComplete: () => {
                     tl.kill();
@@ -305,7 +305,7 @@ const animations = {
                 .fadeIn('.about-shops__container')
                 // .fadeIn('.about-shops__image-wrap', {}, 0)
                 // .fadeIn('.about-shops__text, .about-shops__btn', 1.2)
-                .clipTTB('.about-shops__list-item', { duration: 0.6, stagger: 0.6 }, 1.2);
+                .clipTTB('.about-shops__list-item', { duration: 0.3, stagger: 0.3 }, 0.6);
         }
     },
 

@@ -9,7 +9,12 @@
 
     &__bg {
         
+        max-height: 80rem;
+        @media (max-width: 48em) {
+           max-height: initial;
 
+           
+        }
         @media (min-width: 48em) {
             flex: 0 0 84.4rem;
 
