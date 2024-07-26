@@ -121,7 +121,8 @@
                                         <option value="5">jacadi</option>
                                     </select>
                                 </div>
-                                <div class="form-modal__field dropdown">
+                              
+                                <!-- <div class="form-modal__field dropdown">
                                     <select
                                         data-sel-label="Город, где вы хотите открыть магазин"
                                         data-show-selection
@@ -132,10 +133,22 @@
                                         <option value="4">Самара</option>
                                         <option value="5">Владивосток</option>
                                     </select>
+                                </div> -->
+                                <div data-hint="Заполните поле" class="form-modal__field input form-modal__field--with">
+                                    <input
+                                        data-validate
+                                        data-required
+                                        autocomplete="off"
+                                        type="text"
+                                        name="form[]"
+                                        placeholder="Город, где вы хотите открыть магазин"
+                                        class="input__field"
+                                    />
                                 </div>
                                 <div class="form-modal__field dropdown">
                                     <select
-                                        data-sel-label="Ваш опыт в предпринимательстве"
+                                        data-sel-label="Оптовое сотрудничество, франчайзинг, другое
+                                        "
                                         data-show-selection
                                     >
                                         <option value="1">Да</option>

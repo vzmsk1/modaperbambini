@@ -61,7 +61,7 @@
                     <div class="wholesale-hero__image-wrap">
                         <img src="./assets/images/bg/8fc93f4291ebf3de3bcb190d3b42f73e.webp" alt="" class="wholesale-hero__image">
                     </div>
-                    <button type="button" class="wholesale-hero__btn btn btn_primary">
+                    <button type="button" data-modal="#requestOpeningModal" class="wholesale-hero__btn btn btn_primary">
                         <span class="btn__txt">Оставить заявку</span>
                     </button>
                 </div>
@@ -507,17 +507,25 @@
                                         <option value="5">jacadi</option>
                                     </select>
                                 </div>
-                                <div class="form-modal__field dropdown">
-                                    <select data-sel-label="Город, где вы хотите открыть магазин" data-show-selection="">
+                              
+                                <!-- <div class="form-modal__field dropdown">
+                                    <select
+                                        data-sel-label="Город, где вы хотите открыть магазин"
+                                        data-show-selection
+                                    >
                                         <option value="1">Москва</option>
                                         <option value="2">Санкт-Петербург</option>
                                         <option value="3">Пенза</option>
                                         <option value="4">Самара</option>
                                         <option value="5">Владивосток</option>
                                     </select>
+                                </div> -->
+                                <div data-hint="Заполните поле" class="form-modal__field input form-modal__field--with">
+                                    <input data-validate="" data-required="" autocomplete="off" type="text" name="form[]" placeholder="Город, где вы хотите открыть магазин" class="input__field">
                                 </div>
                                 <div class="form-modal__field dropdown">
-                                    <select data-sel-label="Ваш опыт в предпринимательстве" data-show-selection="">
+                                    <select data-sel-label="Оптовое сотрудничество, франчайзинг, другое
+                                        " data-show-selection="">
                                         <option value="1">Да</option>
                                         <option value="2">Нет</option>
                                         <option value="3">Другое</option>

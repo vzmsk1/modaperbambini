@@ -32445,15 +32445,15 @@ _totalTimeToTime = (clampedTotalTime, duration, repeat, repeatDelay, yoyo) => {
                             duration: 0.6,
                             stagger: 0.6
                         })
-                        .fadeIn('#about-screen-body', {}, 0.6)
-                        .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 1.2)
+                        .fadeIn('#about-screen-body', {}, 0.3)
+                        .fadeIn(document.querySelectorAll('.about__numbers')[0], {}, 0.6)
                         .clipTTB(
                             '.numbers-about__item:not(:first-child)',
                             {
-                                duration: 0.6,
-                                stagger: 0.6
+                                duration: 0.3,
+                                stagger: 0.3
                             },
-                            1.6
+                            0.7
                         );
                 }
             },
@@ -33025,13 +33025,13 @@ _totalTimeToTime = (clampedTotalTime, duration, repeat, repeatDelay, yoyo) => {
 
                         // Проверяем, является ли устройство десктопным, и если да, то запускаем автоматическую смену табов
                         if (!window.matchMedia('(max-width: 767px)').matches) {
-                            autoChangeInterval = setInterval(autoChangeTab, 10000);
+                            autoChangeInterval = setInterval(autoChangeTab, 12000);
                         }
 
                         // Останавливаем автоматическую смену табов при изменении размера экрана
                         window.addEventListener('resize', () => {
                             if (!window.matchMedia('(max-width: 767px)').matches) {
-                                autoChangeInterval = setInterval(autoChangeTab, 10000);
+                                autoChangeInterval = setInterval(autoChangeTab, 12000);
                             } else {
                                 clearInterval(autoChangeInterval);
                             }
